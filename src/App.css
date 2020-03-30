@@ -24,6 +24,12 @@ body, .app {
   color: white;
 }
 
+.message h4 {
+  font-weight: 200;
+  margin: 0;
+  color: white;
+}
+
 .list-books-content {
   padding: 0 0 80px;
   flex: 1;
@@ -184,6 +190,14 @@ button:active {
   cursor: pointer;
 }
 
+option:checked  {
+  display:inline-block; 
+  color: red;  
+}
+
+
+
+
 /* book cover */
 
 .book-cover {
@@ -196,3 +210,4 @@ button:active {
   text-align: center;
   font-size: 0.8em;
 }
+
