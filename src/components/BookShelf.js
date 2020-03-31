@@ -46,7 +46,7 @@ export default class BookShelf extends Component {
                         <BookShelfBooks books={this.state.read} shelf="read" title="Read" selectionChanges={this.handleLibrarySelection} />
                     </div>
                 </div>
-                <AddBooks />
+                <AddBooks  libraryBooks={this.state} />
             </div>
         )
     }

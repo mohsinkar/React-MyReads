@@ -7,7 +7,7 @@ export default class AddBooks extends Component {
        
         return (
             <div className="open-search">
-                <Link to={{ pathname: "/search", selectionHandler: this.props.selectionChanges}}>
+                <Link to={{ pathname: "/search", state: {libraryBooks: this.props.libraryBooks}}}>
                     <button>Add a book</button>
                 </Link>
             </div>

@@ -9,7 +9,16 @@ export default class SearchBooks extends Component {
 
     state = {
         query: "",
-        books: []
+        books: [],
+        libraryBooks: []
+    }
+
+    componentDidMount() {
+     
+        const { currentlyReading, wantToRead, read } =this.props.location.state.libraryBooks
+        this.setState({
+            libraryBooks: [...currentlyReading, ...wantToRead, ...read]
+        })
     }
 
     changeHandler = (query) => {
@@ -18,8 +27,8 @@ export default class SearchBooks extends Component {
         })
         if (query.length > 0) {
             search(query).then(res => {
-                const bookShelf = res;
-                console.log(bookShelf)
+                let bookShelf = res;
+                bookShelf = bookShelf.map(obj => this.state.libraryBooks.find(o => o.id === obj.id) || obj);
                 this.setState({
                     books: bookShelf
                 });
@@ -32,7 +41,6 @@ export default class SearchBooks extends Component {
     }
 
     handleLibrarySelection = (book, shelf) => {
-        console.log(book, shelf)
         update(book, shelf).then(res => {
             this.props.history.push('/')
         })
@@ -40,6 +48,7 @@ export default class SearchBooks extends Component {
 
 
     render() {
+
         return (
             <div>
                 <div className="search-books">
@@ -50,7 +59,7 @@ export default class SearchBooks extends Component {
                         </div>
                     </div>
                     <div className="search-books-results">
-                        <BookShelfBooks books={this.state.books} shelf="none" title="Search Results"  selectionChanges={this.handleLibrarySelection}  />
+                        <BookShelfBooks books={this.state.books} title="Search Results" selectionChanges={this.handleLibrarySelection} />
                     </div>
                 </div>
             </div>

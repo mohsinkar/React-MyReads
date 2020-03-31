@@ -23,8 +23,8 @@ export default class BookShelfBooks extends Component {
                                                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail}"` }}></div>
                                             }
                                             <div className="book-shelf-changer">
-                                                <select onChange={(event) => (this.props.selectionChanges(book,event.target.value))} value={this.props.shelf} >
-                                                    <option value="move" disabled>Move to...</option>
+                                                <select onChange={(event) => (this.props.selectionChanges(book,event.target.value))} value={typeof book.shelf === "undefined" ? 'none' : book.shelf} >
+                                                    <option value="move" disabled>{book.shelf}</option>
                                                     <option value="currentlyReading">Currently Reading</option>
                                                     <option value="wantToRead">Want to Read</option>
                                                     <option value="read">Read</option>
